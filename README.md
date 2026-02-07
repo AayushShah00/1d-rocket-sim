@@ -79,8 +79,31 @@ These constraints expose realistic failure modes and demonstrate interactions be
 9. Observed Behavior
 
 With critically damped gains, the vehicle ascends smoothly to the target altitude and settles without sustained oscillation. Noise introduces small steady-state fluctuations, while thrust saturation demonstrates the effect of limited actuator authority. The system remains stable throughout extended simulation.
+10. Findings. After a bit of experimenting with diffrent Kd and Kp. Here are my findings of what happens when you increase Kd and Kp. 
+1. Effects of Increasing/Decreasing Kp (Proportional Gain)
+	
+Increase in Kp	↑ More overshoot	↓ Settling faster	↑ More jitter
+Decrease in Kp 	↓ Less overshoot	↑ Settling slower	↓ Less jitter
 
-10. Extensions
+Explanation:
+
+Higher Kp reacts more aggressively to position errors → faster response → can overshoot → more thrust oscillation.
+
+Lower Kp is sluggish → slower settling → smoother thrust.
+
+2. Effects of Increasing/Decreasing Kd (Derivative Gain)
+Increase in Kd:	↓ Less overshoot	↓ Settling faster	↓ Thrust jitter
+Decrease in Kd 	↑ More overshoot	↑ Settling slower	↑ Thrust jitter
+
+Explanation:
+
+Kd adds damping → resists velocity → reduces overshoot and stabilizes thrust.
+
+Too high Kd → slows system too much (overdamped), can make response sluggish.
+
+Too low Kd → underdamped → large oscillations and thrust spikes.
+Kp acts like the rocket’s thrusters firing to quickly correct altitude errors, while Kd acts like fine-tuned stabilizers that resist excessive speed, damping oscillations and keeping the flight smooth.
+11. Extensions
 
 This framework can be extended to:
 
